@@ -1,8 +1,8 @@
 {
   "hero": {
     "mediaType": "image",
-    "mediaUrl": "/uploads/1779272132_6a0d89c488012-1790061777003-21396.png",
-    "posterUrl": "/uploads/Buat_berwarna_merah_dan_putih_-1790061733394-961934.mp4",
+    "mediaUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
+    "posterUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
     "title": "Strategi Bertemu",
     "titleAccent": "Teknologi.",
     "desc": "Kolaborasi kuat antara strategi bisnis dan kekuatan teknologi untuk membantu perusahaan Anda tumbuh secara efisien, scalable, dan berkelanjutan.",
@@ -31,7 +31,7 @@
       "category": "Edutech & Pembelajaran",
       "title": "Demo Sistem Pembelajaran Farmasi pada Dosen Politeknik Indonusa",
       "client": "Politeknik Indonusa",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     },
@@ -40,7 +40,7 @@
       "category": "Sistem ERP",
       "title": "SIT Sistem ERP FJM",
       "client": "PT FJM",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     },
@@ -49,7 +49,7 @@
       "category": "Audit & Assessment",
       "title": "Assessment Sistem ERP PT. Cobra Dental Indonesia",
       "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     },
@@ -58,7 +58,7 @@
       "category": "Sistem ERP",
       "title": "Demo Proyek Sistem ERP PT. Cobra Dental Indonesia",
       "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     },
@@ -67,7 +67,7 @@
       "category": "Audit & Assessment",
       "title": "Assessment Sistem ERP di PT. Gamma Buana Persada",
       "client": "PT. Gamma Buana Persada",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     },
@@ -76,7 +76,7 @@
       "category": "Mobile & Customer App",
       "title": "Demo Mobile dan Customer App PT. Cobra Dental Indonesia",
       "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "",
+      "imageUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
       "link": "/kontak",
       "featured": true
     }

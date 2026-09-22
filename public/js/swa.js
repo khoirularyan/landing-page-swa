@@ -144,7 +144,7 @@
 
     grid.innerHTML = projects.map(function (item) {
       var thumbHtml = item.imageUrl
-        ? '<div class="project-card__thumb" style="padding:0;overflow:hidden"><img src="' + item.imageUrl + '" alt="' + item.title + '" style="width:100%;height:100%;object-fit:cover;"><span class="project-card__badge">' + (item.category || 'ERP') + '</span></div>'
+        ? '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><img src="' + item.imageUrl + '" alt="' + item.title + '" loading="lazy"></div>'
         : '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><div class="project-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>';
 
       return '<div class="project-card reveal">' +
