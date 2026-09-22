@@ -7,11 +7,15 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["landing-page", "swa-digital-solusindo"],
+  "keywords": [
+    "landing-page",
+    "swa-digital-solusindo"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "multer": "^2.4.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

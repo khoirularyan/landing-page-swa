@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWA Digital CMS — Kelola Konten & Media</title>
+  <link rel="icon" type="image/png" href="/logo-swa.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/cms/css/cms.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="cms-topbar">
+    <div class="cms-topbar__brand">
+      <img src="/logo-swa.png" alt="SWA Digital" class="cms-logo">
+      <div class="cms-brand-text">
+        <span class="cms-brand-name">SWA Content Studio</span>
+        <span class="cms-brand-badge">CMS v1.0</span>
+      </div>
+    </div>
+    <div class="cms-topbar__actions">
+      <div class="cms-status" id="cms-status">
+        <span class="cms-status-dot"></span>
+        <span class="cms-status-text">Tersambung ke Server</span>
+      </div>
+      <a href="/" target="_blank" class="cms-btn cms-btn--outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Lihat Website Utama ↗
+      </a>
+      <button class="cms-btn cms-btn--primary" id="btn-save-all">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        Simpan Semua Perubahan
+      </button>
+    </div>
+  </header>
+
+  <div class="cms-layout">
+    <!-- SIDEBAR NAV -->
+    <aside class="cms-sidebar">
+      <div class="cms-nav-group">
+        <span class="cms-nav-group-title">MANAJEMEN KONTEN</span>
+        <button class="cms-nav-item active" data-tab="media">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Media &amp; Galeri Foto
+        </button>
+        <button class="cms-nav-item" data-tab="hero">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Hero Beranda
+        </button>
+                <button class="cms-nav-item" data-tab="richz">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Produk Richz
+        </button>
+        <button class="cms-nav-item" data-tab="projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Portfolio &amp; Project
+        </button>
+        <button class="cms-nav-item" data-tab="contact">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Kontak &amp; Alamat
+        </button>
+      </div>
+
+      <div class="cms-sidebar__footer">
+        <p class="cms-footnote">Expressa Group &copy; 2025<br>SWA Digital Solusindo</p>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="cms-main">
+
+      <!-- ════ TAB 1: MEDIA & GALERI FOTO ════ -->
+      <section class="cms-pane active" id="pane-media">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Media &amp; Galeri Foto</h1>
+            <p class="cms-pane__desc">Upload foto, gambar proyek, icon, dan video latar belakang untuk digunakan di seluruh website.</p>
+          </div>
+        </div>
+
+        <!-- UPLOAD DROPZONE -->
+        <div class="cms-dropzone" id="dropzone">
+          <input type="file" id="file-input" class="cms-file-input" accept="image/*,video/mp4,video/webm">
+          <div class="cms-dropzone__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E52E2E" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3 class="cms-dropzone__title">Klik atau Tarik File Foto / Video ke Sini</h3>
+          <p class="cms-dropzone__hint">Mendukung format PNG, JPG, JPEG, WebP, SVG, dan MP4 (Maksimal 50MB)</p>
+          <button type="button" class="cms-btn cms-btn--secondary" onclick="document.getElementById('file-input').click()">
+            Pilih File dari Komputer
+          </button>
+          <div class="cms-upload-progress" id="upload-progress" style="display:none">
+            <div class="cms-progress-bar"><div class="cms-progress-fill" id="progress-fill"></div></div>
+            <span class="cms-progress-text" id="progress-text">Mengunggah file...</span>
+          </div>
+        </div>
+
+        <!-- MEDIA GALLERY GRID -->
+        <div class="cms-section-card">
+          <div class="cms-section-card__head">
+            <h3>Aset Media yang Terunggah (<span id="media-count">0</span>)</h3>
+            <button class="cms-btn cms-btn--sm cms-btn--outline" id="btn-refresh-media">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              Segarkan
+            </button>
+          </div>
+          <div class="cms-media-grid" id="media-grid">
+            <div class="cms-empty">Memuat aset media...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ TAB 2: HERO BERANDA ════ -->
+      <section class="cms-pane" id="pane-hero">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Pengaturan Hero Beranda</h1>
+            <p class="cms-pane__desc">Atur latar belakang video / foto sinematik paling atas di halaman utama serta teks judulnya.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary btn-save-section">Simpan Hero</button>
+        </div>
+
+        <div class="cms-form-grid">
+          <!-- Media Selector Card -->
+          <div class="cms-card">
+            <h3 class="cms-card__title">1. Tipe &amp; Aset Latar Belakang Hero</h3>
+            
+            <div class="cms-field">
+              <label class="cms-label">Pilih Tipe Media Latar:</label>
+              <div class="cms-radio-group">
+                <label class="cms-radio-pill">
+                  <input type="radio" name="hero-media-type" value="video" checked id="radio-hero-video">
+                  <span>Video Bergerak (MP4 / WebM)</span>
+                </label>
+                <label class="cms-radio-pill">
+                  <input type="radio" name="hero-media-type" value="image" id="radio-hero-image">
+                  <span>Foto / Gambar Diam (PNG / JPG)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="cms-field">
+              <label class="cms-label">URL File Media Latar:</label>
+              <div class="cms-input-group">
+                <input type="text" class="cms-input" id="hero-media-url" placeholder="/assets/hero-loop.mp4 atau /uploads/foto.jpg">
+                <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('hero-media-url')">Pilih dari Galeri</button>
+              </div>
+              <span class="cms-help">Bisa memilih dari galeri media atau memasukkan URL/path file lokal.</span>
+            </div>
+
+            <div class="cms-field" id="hero-poster-field">
+              <label class="cms-label">Poster / Gambar Fallback (Opsional untuk video):</label>
+              <div class="cms-input-group">
+                <input type="text" class="cms-input" id="hero-poster-url" placeholder="/assets/poster.jpg">
+                <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('hero-poster-url')">Pilih dari Galeri</button>
+              </div>
+            </div>
+
+            <!-- Live Hero Media Preview Box -->
+            <div class="cms-field">
+              <label class="cms-label">Pratinjau Media Latar Saat Ini:</label>
+              <div class="cms-media-preview-box" id="hero-preview-box">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Texts Card -->
+          <div class="cms-card">
+            <h3 class="cms-card__title">2. Teks &amp; Tombol Aksi Hero</h3>
+
+            <div class="cms-field">
+              <label class="cms-label">Judul Utama Bagian 1 (Warna Putih):</label>
+              <input type="text" class="cms-input" id="hero-title" value="Transformasi Digital Terarah untuk">
+            </div>
+
+            <div class="cms-field">
+              <label class="cms-label">Judul Utama Bagian 2 (Aksen Warna Merah):</label>
+              <input type="text" class="cms-input" id="hero-title-accent" value="Pertumbuhan Bisnis B2B">
+            </div>
+
+            <div class="cms-field">
+              <label class="cms-label">Deskripsi Paragraf Hero:</label>
+              <textarea class="cms-textarea" id="hero-desc" rows="4"></textarea>
+            </div>
+
+            <div class="cms-grid-2">
+              <div class="cms-field">
+                <label class="cms-label">Teks Tombol Utama:</label>
+                <input type="text" class="cms-input" id="hero-cta-text" value="Konsultasi Sekarang">
+              </div>
+              <div class="cms-field">
+                <label class="cms-label">Tautan Tombol Utama:</label>
+                <input type="text" class="cms-input" id="hero-cta-link" value="/kontak">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- ════ TAB: PRODUK RICHZ ════ -->
+      <section class="cms-pane" id="pane-richz">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Ekosistem Produk Richz</h1>
+            <p class="cms-pane__desc">Kelola produk siap pakai (RichzPOS, RichzStore, dll). Tambah produk baru, ganti gambar, kategori, tema warna, ikon, dan tautan.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary" id="btn-add-richz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Produk Richz
+          </button>
+        </div>
+
+        <div class="cms-project-list" id="richz-list-container">
+          <!-- Richz items rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ════ TAB 3: PORTFOLIO & PROYEK ════ -->
+      <section class="cms-pane" id="pane-projects">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Portfolio &amp; Project Kami</h1>
+            <p class="cms-pane__desc">Atur daftar proyek yang ditampilkan di beranda dan halaman /proyek. Lengkap dengan gambar thumbnail dan nama klien.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary" id="btn-add-project">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Proyek Baru
+          </button>
+        </div>
+
+        <div class="cms-project-list" id="project-list-container">
+          <!-- Project items rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ════ TAB 4: KONTAK & ALAMAT ════ -->
+      <section class="cms-pane" id="pane-contact">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Pengaturan Kontak &amp; Alamat</h1>
+            <p class="cms-pane__desc">Perbarui nomor WhatsApp, email resmi, dan alamat kantor operasional yang tertera pada footer dan halaman kontak.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary btn-save-section">Simpan Kontak</button>
+        </div>
+
+        <div class="cms-card" style="max-width:800px">
+          <div class="cms-field">
+            <label class="cms-label">Email Resmi Perusahaan:</label>
+            <input type="email" class="cms-input" id="contact-email">
+          </div>
+
+          <div class="cms-grid-2">
+            <div class="cms-field">
+              <label class="cms-label">WhatsApp Kantor Karanganyar:</label>
+              <input type="text" class="cms-input" id="contact-wa-karanganyar">
+            </div>
+            <div class="cms-field">
+              <label class="cms-label">Nomor WhatsApp Karanganyar (Format 62...):</label>
+              <input type="text" class="cms-input" id="contact-wa-karanganyar-num">
+            </div>
+          </div>
+
+          <div class="cms-grid-2">
+            <div class="cms-field">
+              <label class="cms-label">WhatsApp Kantor Gresik:</label>
+              <input type="text" class="cms-input" id="contact-wa-gresik">
+            </div>
+            <div class="cms-field">
+              <label class="cms-label">Nomor WhatsApp Gresik (Format 62...):</label>
+              <input type="text" class="cms-input" id="contact-wa-gresik-num">
+            </div>
+          </div>
+
+          <div class="cms-field">
+            <label class="cms-label">Alamat Kantor Gresik:</label>
+            <textarea class="cms-textarea" id="contact-address-gresik" rows="2"></textarea>
+          </div>
+
+          <div class="cms-field">
+            <label class="cms-label">Alamat Kantor Karanganyar:</label>
+            <textarea class="cms-textarea" id="contact-address-karanganyar" rows="2"></textarea>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MEDIA PICKER MODAL -->
+  <div class="cms-modal" id="media-picker-modal">
+    <div class="cms-modal__content">
+      <div class="cms-modal__header">
+        <h3>Pilih Gambar dari Galeri Media</h3>
+        <button type="button" class="cms-modal__close" onclick="closeMediaPicker()">&times;</button>
+      </div>
+      <div class="cms-modal__body">
+        <p style="font-size:13px;color:#6B7280;margin-bottom:14px">Klik gambar di bawah untuk menggunakannya secara otomatis:</p>
+        <div class="cms-media-grid cms-media-grid--modal" id="modal-media-grid">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+      <div class="cms-modal__footer">
+        <button type="button" class="cms-btn cms-btn--secondary" onclick="closeMediaPicker()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- EDIT / ADD RICHZ PRODUCT MODAL -->
+  <div class="cms-modal" id="richz-modal">
+    <div class="cms-modal__content">
+      <div class="cms-modal__header">
+        <h3 id="richz-modal-title">Edit Produk Richz</h3>
+        <button type="button" class="cms-modal__close" onclick="closeRichzModal()">&times;</button>
+      </div>
+      <div class="cms-modal__body">
+        <input type="hidden" id="richz-edit-id">
+        <div class="cms-grid-2">
+          <div class="cms-field">
+            <label class="cms-label">Awalan Nama (Brand):</label>
+            <input type="text" class="cms-input" id="richz-edit-prefix" value="Richz" placeholder="Contoh: Richz">
+          </div>
+          <div class="cms-field">
+            <label class="cms-label">Akhiran Nama (Highlight Aksen):</label>
+            <input type="text" class="cms-input" id="richz-edit-suffix" placeholder="Contoh: POS, Store, FNB, Pay">
+          </div>
+        </div>
+        <div class="cms-grid-2">
+          <div class="cms-field">
+            <label class="cms-label">Kategori / Sektor:</label>
+            <input type="text" class="cms-input" id="richz-edit-category" placeholder="Contoh: Retail, E-Commerce, F&B">
+          </div>
+          <div class="cms-field">
+            <label class="cms-label">Tema Warna Aksen:</label>
+            <select class="cms-input" id="richz-edit-color">
+              <option value="red">Merah (Red - Retail / POS)</option>
+              <option value="blue">Biru (Blue - E-Commerce / Web)</option>
+              <option value="orange">Oranye (Orange - F&B / Resto)</option>
+              <option value="green">Hijau (Green - Attendance / HR)</option>
+              <option value="purple">Ungu (Purple - Finance / Analytics)</option>
+            </select>
+          </div>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Pilihan Ikon:</label>
+          <select class="cms-input" id="richz-edit-icon">
+            <option value="store">Toko / Kasir (Store / Retail)</option>
+            <option value="cart">Keranjang Belanja (Shopping Cart)</option>
+            <option value="utensils">Makanan & Minuman (Utensils / Dining)</option>
+            <option value="fingerprint">Sidik Jari / Absensi (Fingerprint / HR)</option>
+            <option value="mobile">Smartphone / Gadget (Mobile App)</option>
+            <option value="card">Kartu Pembayaran (Payment / Finance)</option>
+          </select>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Gambar Thumbnail Produk:</label>
+          <div class="cms-input-group">
+            <input type="text" class="cms-input" id="richz-edit-image" placeholder="/uploads/nama-gambar.jpg atau URL">
+            <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('richz-edit-image')">Pilih dari Galeri</button>
+          </div>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Tautan Tombol:</label>
+          <input type="text" class="cms-input" id="richz-edit-link" value="/layanan">
+        </div>
+      </div>
+      <div class="cms-modal__footer">
+        <button type="button" class="cms-btn cms-btn--secondary" onclick="closeRichzModal()">Batal</button>
+        <button type="button" class="cms-btn cms-btn--primary" id="btn-save-richz-item">Simpan Produk Richz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT / ADD PROJECT MODAL -->
+  <div class="cms-modal" id="project-modal">
+    <div class="cms-modal__content">
+      <div class="cms-modal__header">
+        <h3 id="project-modal-title">Edit Proyek</h3>
+        <button type="button" class="cms-modal__close" onclick="closeProjectModal()">&times;</button>
+      </div>
+      <div class="cms-modal__body">
+        <input type="hidden" id="proj-edit-id">
+        <div class="cms-field">
+          <label class="cms-label">Judul Proyek:</label>
+          <input type="text" class="cms-input" id="proj-edit-title" placeholder="Contoh: Demo Sistem ERP PT. XYZ">
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Nama Klien / Instansi:</label>
+          <input type="text" class="cms-input" id="proj-edit-client" placeholder="Contoh: PT. XYZ Indonesia">
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Kategori / Label Badge:</label>
+          <input type="text" class="cms-input" id="proj-edit-category" placeholder="Contoh: Sistem ERP, Audit, Mobile App">
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Gambar Thumbnail Proyek (Opsional):</label>
+          <div class="cms-input-group">
+            <input type="text" class="cms-input" id="proj-edit-image" placeholder="/uploads/nama-gambar.jpg">
+            <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('proj-edit-image')">Pilih dari Galeri</button>
+          </div>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Tautan Tombol Proyek:</label>
+          <input type="text" class="cms-input" id="proj-edit-link" value="/kontak">
+        </div>
+        <div class="cms-field">
+          <label class="cms-checkbox-label">
+            <input type="checkbox" id="proj-edit-featured" checked>
+            <span>Tampilkan juga di Beranda Utama</span>
+          </label>
+        </div>
+      </div>
+      <div class="cms-modal__footer">
+        <button type="button" class="cms-btn cms-btn--secondary" onclick="closeProjectModal()">Batal</button>
+        <button type="button" class="cms-btn cms-btn--primary" id="btn-save-project-item">Simpan Proyek</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="cms-toast" id="cms-toast">
+    <span class="cms-toast__msg" id="toast-msg">Perubahan berhasil disimpan!</span>
+  </div>
+
+  <script src="/cms/js/cms.js"></script>
+</body>
+</html>
