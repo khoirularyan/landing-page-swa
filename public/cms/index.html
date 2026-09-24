@@ -12,30 +12,79 @@
 </head>
 <body>
 
-  <!-- TOP HEADER -->
-  <header class="cms-topbar">
-    <div class="cms-topbar__brand">
-      <img src="/logo-swa.png" alt="SWA Digital" class="cms-logo">
-      <div class="cms-brand-text">
-        <span class="cms-brand-name">SWA Content Studio</span>
-        <span class="cms-brand-badge">CMS v1.0</span>
+  <!-- LOGIN SCREEN -->
+  <div id="cms-login-screen" class="cms-login-container">
+    <div class="cms-login-card">
+      <div class="cms-login-header">
+        <img src="/logo-swa.png" alt="SWA Digital" class="cms-login-logo">
+        <h1 class="cms-login-title">SWA Content Studio</h1>
+        <p class="cms-login-subtitle">Masuk untuk mengelola konten, produk, dan portofolio</p>
       </div>
+
+      <form id="cms-login-form" class="cms-login-form" onsubmit="return false;">
+        <div class="cms-login-alert" id="login-error" style="display: none;"></div>
+
+        <div class="cms-field">
+          <label class="cms-label" for="login-username">Username</label>
+          <div class="cms-input-icon-wrap">
+            <svg class="cms-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input type="text" id="login-username" class="cms-input" placeholder="Masukkan username" autocomplete="username" required>
+          </div>
+        </div>
+
+        <div class="cms-field">
+          <label class="cms-label" for="login-password">Password</label>
+          <div class="cms-input-icon-wrap">
+            <svg class="cms-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="login-password" class="cms-input" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
+            <button type="button" class="cms-password-toggle" id="btn-toggle-pwd" title="Tampilkan sandi">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="cms-btn cms-btn--primary cms-btn--block" id="btn-login">
+          <span>Masuk ke Dashboard</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="cms-login-footer">
+          <a href="/" class="cms-login-back">&larr; Kembali ke Website Utama</a>
+        </div>
+      </form>
     </div>
-    <div class="cms-topbar__actions">
-      <div class="cms-status" id="cms-status">
-        <span class="cms-status-dot"></span>
-        <span class="cms-status-text">Tersambung ke Server</span>
+  </div>
+
+  <!-- STUDIO DASHBOARD WRAPPER (Protected) -->
+  <div id="cms-app" class="cms-app-wrapper" style="display: none;">
+    <!-- TOP HEADER -->
+    <header class="cms-topbar">
+      <div class="cms-topbar__brand">
+        <img src="/logo-swa.png" alt="SWA Digital" class="cms-logo">
+        <div class="cms-brand-text">
+          <span class="cms-brand-name">SWA Content Studio</span>
+          <span class="cms-brand-badge">CMS v1.0</span>
+        </div>
       </div>
-      <a href="/" target="_blank" class="cms-btn cms-btn--outline">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Lihat Website Utama ↗
-      </a>
-      <button class="cms-btn cms-btn--primary" id="btn-save-all">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-        Simpan Semua Perubahan
-      </button>
-    </div>
-  </header>
+      <div class="cms-topbar__actions">
+        <div class="cms-status" id="cms-status">
+          <span class="cms-status-dot"></span>
+          <span class="cms-status-text">Tersambung ke Server</span>
+        </div>
+        <a href="/" target="_blank" class="cms-btn cms-btn--outline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Lihat Website Utama ↗
+        </a>
+        <button class="cms-btn cms-btn--primary" id="btn-save-all">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Simpan Semua Perubahan
+        </button>
+        <button class="cms-btn cms-btn--danger-outline" id="btn-cms-logout" title="Keluar dari CMS">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Keluar
+        </button>
+      </div>
+    </header>
 
   <div class="cms-layout">
     <!-- SIDEBAR NAV -->
@@ -57,6 +106,10 @@
         <button class="cms-nav-item" data-tab="projects">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
           Portfolio &amp; Project
+        </button>
+        <button class="cms-nav-item" data-tab="testimonials">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Testimoni Klien
         </button>
         <button class="cms-nav-item" data-tab="contact">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -198,6 +251,28 @@
               </div>
             </div>
           </div>
+
+          <!-- 3. Gambar Bagian Solusi Kustom -->
+          <div class="cms-card" style="grid-column: 1 / -1;">
+            <h3 class="cms-card__title">3. Gambar Bagian "Butuh Lebih dari Solusi Siap Pakai?"</h3>
+            <p style="font-size:13px;color:#6B7280;margin-bottom:16px">
+              Foto visual tim di sebelah kiri teks penjelasan solusi kustom (dengan 4 badge melayang: Understand, Design, Build, Grow).
+            </p>
+            <div class="cms-field">
+              <label class="cms-label">URL / File Gambar Solusi Kustom:</label>
+              <div class="cms-input-group">
+                <input type="text" class="cms-input" id="custom-sol-image-url" placeholder="/assets/images/custom-solution-team.jpg">
+                <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('custom-sol-image-url')">Pilih dari Galeri</button>
+              </div>
+              <span class="cms-help">Default: /assets/images/custom-solution-team.jpg. Gambar bisa diganti kapan saja dari galeri atau diupload.</span>
+            </div>
+            <div class="cms-field">
+              <label class="cms-label">Pratinjau Gambar Solusi Kustom:</label>
+              <div class="cms-media-preview-box" id="custom-sol-preview-box" style="max-height:240px">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -234,6 +309,24 @@
 
         <div class="cms-project-list" id="project-list-container">
           <!-- Project items rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ════ TAB: TESTIMONI KLIEN ════ -->
+      <section class="cms-pane" id="pane-testimonials">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Testimoni &amp; Pendapat Klien</h1>
+            <p class="cms-pane__desc">Kelola testimoni dan pendapat dari pimpinan klien (Cobra Dental, RS Bhirawa Bhakti, RSI Muslimat, RSUD Dayaku Raja). Lengkap dengan foto profil, instansi, badge, dan kutipan.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary" id="btn-add-testi">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Testimoni Baru
+          </button>
+        </div>
+
+        <div class="cms-project-list" id="testi-list-container">
+          <!-- Testimonials rendered dynamically -->
         </div>
       </section>
 
@@ -419,6 +512,51 @@
       </div>
     </div>
   </div>
+
+  <!-- EDIT / ADD TESTIMONIAL MODAL -->
+  <div class="cms-modal" id="testi-modal">
+    <div class="cms-modal__content">
+      <div class="cms-modal__header">
+        <h3 id="testi-modal-title">Edit Testimoni Klien</h3>
+        <button type="button" class="cms-modal__close" onclick="closeTestiModal()">&times;</button>
+      </div>
+      <div class="cms-modal__body">
+        <input type="hidden" id="testi-edit-id">
+        <div class="cms-grid-2">
+          <div class="cms-field">
+            <label class="cms-label">Nama Klien / Pimpinan:</label>
+            <input type="text" class="cms-input" id="testi-edit-name" placeholder="Contoh: Dannar Whilasto">
+          </div>
+          <div class="cms-field">
+            <label class="cms-label">Jabatan &amp; Instansi / Perusahaan:</label>
+            <input type="text" class="cms-input" id="testi-edit-role" placeholder="Contoh: COO PT. Cobra Dental Indonesia">
+          </div>
+        </div>
+        <div class="cms-grid-2">
+          <div class="cms-field">
+            <label class="cms-label">Kategori / Solusi Sistem (Badge):</label>
+            <input type="text" class="cms-input" id="testi-edit-badge" placeholder="Contoh: Sistem ERP Terintegrasi">
+          </div>
+          <div class="cms-field">
+            <label class="cms-label">Foto Profil Klien:</label>
+            <div class="cms-input-group">
+              <input type="text" class="cms-input" id="testi-edit-photo" placeholder="/assets/images/testimoni/dannar-whilasto.jpeg">
+              <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('testi-edit-photo')">Pilih Foto</button>
+            </div>
+          </div>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Pendapat / Ulasan Klien (Testimoni):</label>
+          <textarea class="cms-textarea" id="testi-edit-quote" rows="4" placeholder="Tuliskan ulasan atau pendapat klien..."></textarea>
+        </div>
+      </div>
+      <div class="cms-modal__footer">
+        <button type="button" class="cms-btn cms-btn--secondary" onclick="closeTestiModal()">Batal</button>
+        <button type="button" class="cms-btn cms-btn--primary" id="btn-save-testi-item">Simpan Testimoni</button>
+      </div>
+    </div>
+  </div>
+  </div><!-- /#cms-app -->
 
   <!-- TOAST NOTIFICATION -->
   <div class="cms-toast" id="cms-toast">

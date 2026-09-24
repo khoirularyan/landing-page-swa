@@ -1,14 +1,17 @@
 {
   "hero": {
     "mediaType": "image",
-    "mediaUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
-    "posterUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
+    "mediaUrl": "/assets/images/team/team-6.jpeg",
+    "posterUrl": "/assets/images/team/team-6.jpeg",
     "title": "Strategi Bertemu",
     "titleAccent": "Teknologi.",
+    "titleSub": "Solusi Digital yang Berdampak Nyata.",
     "desc": "Kolaborasi kuat antara strategi bisnis dan kekuatan teknologi untuk membantu perusahaan Anda tumbuh secara efisien, scalable, dan berkelanjutan.",
     "ctaPrimaryText": "Konsultasi Sekarang",
-    "ctaPrimaryLink": "/kontak",
-    "titleSub": "Solusi Digital yang Berdampak Nyata."
+    "ctaPrimaryLink": "/kontak"
+  },
+  "customSolution": {
+    "imageUrl": "/assets/images/custom-solution-team.jpg"
   },
   "dockedBar": {
     "brandTitle": "SWA Digital",
@@ -28,57 +31,95 @@
   "projects": [
     {
       "id": "proj-1",
-      "category": "Edutech & Pembelajaran",
-      "title": "Demo Sistem Pembelajaran Farmasi pada Dosen Politeknik Indonusa",
-      "client": "Politeknik Indonusa",
-      "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+      "category": "Healthcare & Dental Care",
+      "title": "E-Commerce & Distribusi Alat Kedokteran Gigi",
+      "client": "PT Cobra Dental Indonesia",
+      "imageUrl": "/assets/images/portfolio/cobra-dental.png",
       "link": "/kontak",
       "featured": true
     },
     {
       "id": "proj-2",
-      "category": "Sistem ERP",
-      "title": "SIT Sistem ERP FJM",
-      "client": "PT FJM",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "category": "Manufaktur & Alat Berat",
+      "title": "HEMS - Heavy Equipment Management System",
+      "client": "PT Petrokimia Gresik (SBU JPP)",
+      "imageUrl": "/assets/images/portfolio/hems-petrokimia.png",
       "link": "/kontak",
       "featured": true
     },
     {
       "id": "proj-3",
-      "category": "Audit & Assessment",
-      "title": "Assessment Sistem ERP PT. Cobra Dental Indonesia",
-      "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+      "category": "Manufaktur & Kimia",
+      "title": "Portal Operasional & Layanan Terpadu JPP",
+      "client": "PT Petrokimia Gresik",
+      "imageUrl": "/assets/images/portfolio/petrokimia-expressa.png",
       "link": "/kontak",
       "featured": true
     },
     {
       "id": "proj-4",
-      "category": "Sistem ERP",
-      "title": "Demo Proyek Sistem ERP PT. Cobra Dental Indonesia",
-      "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      "category": "Manpower & Procurement",
+      "title": "Sistem Pengadaan Barang & Operasional Terpadu",
+      "client": "PT Fokus Jasa Mitra (FJM)",
+      "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
       "link": "/kontak",
       "featured": true
     },
     {
       "id": "proj-5",
-      "category": "Audit & Assessment",
+      "category": "Audit & Assessment ERP",
       "title": "Assessment Sistem ERP di PT. Gamma Buana Persada",
       "client": "PT. Gamma Buana Persada",
-      "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+      "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
       "link": "/kontak",
       "featured": true
     },
     {
       "id": "proj-6",
-      "category": "Mobile & Customer App",
-      "title": "Demo Mobile dan Customer App PT. Cobra Dental Indonesia",
-      "client": "PT. Cobra Dental Indonesia",
-      "imageUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+      "category": "Edutech & Pembelajaran",
+      "title": "Demo Sistem Pembelajaran Farmasi pada Dosen Politeknik Indonusa",
+      "client": "Politeknik Indonusa",
+      "imageUrl": "/assets/images/portfolio/cobra-dental.png",
       "link": "/kontak",
       "featured": true
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "tmn-1",
+      "name": "Dannar Whilasto",
+      "role": "COO PT. Cobra Dental Indonesia",
+      "company": "PT. Cobra Dental Indonesia",
+      "badge": "Sistem ERP Terintegrasi",
+      "photoUrl": "/assets/images/testimoni/dannar-whilasto.jpeg",
+      "quote": "Expressa Group telah menjadi andalan kami dalam mempermudah proses operasional perusahaan. Dengan adanya sistem ERP, pengelolaan data dan pembuatan laporan menjadi lebih cepat terintegrasi dan dapat diperbarui secara realtime. Sistem ini benar-benar mengubah cara kerja tim kami menjadi lebih efisien."
+    },
+    {
+      "id": "tmn-2",
+      "name": "Mayor Ckm Dr. drg. Nugroho Setyawan, Sp.BM, FICS., FICD., M.M.R.S",
+      "role": "Direktur RS Bhirawa Bhakti",
+      "company": "RS Bhirawa Bhakti",
+      "badge": "Sistem Manajemen Rumah Sakit",
+      "photoUrl": "/assets/images/testimoni/nugroho-setyawan.png",
+      "quote": "Expressa Group telah menjadi mitra teknologi terpercaya bagi rumah sakit kami. Dengan sistem custom yang dikembangkan, proses pelayanan pasien, pengelolaan data medis, hingga pelaporan manajemen menjadi lebih terintegrasi, cepat, dan akurat. Setiap kebutuhan kami direspons dengan solusi yang benar-benar tepat sasaran."
+    },
+    {
+      "id": "tmn-3",
+      "name": "dr. Suparmin, Sp.OG., M.Si",
+      "role": "Direktur RSI Muslimat Jombang",
+      "company": "RSI Muslimat Jombang",
+      "badge": "Sistem Kerja Modern",
+      "photoUrl": "/assets/images/testimoni/dr-suparmin.png",
+      "quote": "Sejak menggunakan sistem custom dari Expressa Group, alur pelayanan pasien di rumah sakit kami menjadi jauh lebih tertata. Mulai dari pendaftaran, rekam medis, hingga laporan operasional dapat diakses secara realtime. Tim Expressa sangat responsif dan memahami kebutuhan spesifik layanan kesehatan."
+    },
+    {
+      "id": "tmn-4",
+      "name": "Irma Hamdiah, SKM., MHPM",
+      "role": "Kasubag TU RSUD Dayaku Raja, Kalimantan Timur",
+      "company": "RSUD Dayaku Raja, Kalimantan Timur",
+      "badge": "Sistem Manajemen Terintegrasi",
+      "photoUrl": "/assets/images/testimoni/irma-hamdiah.png",
+      "quote": "Implementasi sistem custom dari Expressa Group memberikan dampak positif bagi manajemen rumah sakit kami. Pengolahan data, monitoring operasional, serta pembuatan laporan kini lebih efisien dan terintegrasi dalam satu sistem. Kami sangat puas dengan dukungan dan kualitas sistem yang diberikan."
     }
   ],
   "contact": {

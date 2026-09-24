@@ -740,3 +740,197 @@ body {
   color: var(--gray-400);
   font-size: 14px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CMS LOGIN SCREEN STYLES
+   ═══════════════════════════════════════════════════════════ */
+.cms-login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 20%, rgba(229, 46, 46, 0.08) 0%, #0B0F17 80%);
+  padding: 24px;
+  position: relative;
+  z-index: 1000;
+}
+
+.cms-login-card {
+  background: #151D2A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 42px 36px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.cms-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cms-login-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+.cms-login-title {
+  font-family: var(--font-d);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.cms-login-subtitle {
+  font-size: 13.5px;
+  color: #94A3B8;
+  line-height: 1.45;
+}
+
+.cms-login-form .cms-field {
+  margin-bottom: 18px;
+}
+
+.cms-login-form .cms-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #CBD5E1;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cms-input-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cms-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #64748B;
+  pointer-events: none;
+  transition: color .2s ease;
+}
+
+.cms-login-form .cms-input {
+  width: 100%;
+  background: #0D131E;
+  border: 1.5px solid #283548;
+  color: #F8FAFC;
+  font-size: 14.5px;
+  padding: 12px 14px 12px 42px;
+  border-radius: var(--r-sm);
+  outline: none;
+  transition: all .2s ease;
+}
+
+.cms-login-form .cms-input:focus {
+  border-color: var(--red);
+  background: #0B0F17;
+  box-shadow: 0 0 0 3px rgba(229, 46, 46, 0.15);
+}
+
+.cms-login-form .cms-input:focus + .cms-input-icon,
+.cms-input-icon-wrap:focus-within .cms-input-icon {
+  color: var(--red);
+}
+
+.cms-password-toggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color .2s ease;
+}
+
+.cms-password-toggle:hover {
+  color: #F8FAFC;
+}
+
+.cms-btn--block {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  margin-top: 10px;
+}
+
+.cms-login-alert {
+  background: rgba(229, 46, 46, 0.15);
+  border: 1px solid rgba(229, 46, 46, 0.4);
+  color: #FECDD3;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  margin-bottom: 18px;
+  text-align: center;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.cms-login-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cms-login-back {
+  font-size: 13px;
+  color: #64748B;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.cms-login-back:hover {
+  color: var(--red);
+}
+
+/* ── TOPBAR DANGER OUTLINE (LOGOUT) ── */
+.cms-btn--danger-outline {
+  background: transparent;
+  border: 1px solid #FECDD3;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--t);
+  font-family: inherit;
+}
+.cms-btn--danger-outline:hover {
+  background: var(--red-light);
+  border-color: var(--red);
+  color: var(--red-dark);
+}

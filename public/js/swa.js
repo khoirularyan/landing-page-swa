@@ -53,7 +53,9 @@
     })
     .then(function (data) {
       syncHero(data.hero);
+      syncCustomSolution(data.customSolution);
       syncProjects(data.projects);
+      syncTestimonials(data.testimonials);
       syncRichz(data.richz);
       syncContact(data.contact);
       initObserver();
@@ -96,6 +98,14 @@
     if (ctaEl && hero.ctaPrimaryText) {
       ctaEl.innerHTML = hero.ctaPrimaryText + ' <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
       if (hero.ctaPrimaryLink) ctaEl.href = hero.ctaPrimaryLink;
+    }
+  }
+
+  function syncCustomSolution(customSol) {
+    if (!customSol || !customSol.imageUrl) return;
+    var img = document.querySelector('.custom-sol-img');
+    if (img) {
+      img.src = customSol.imageUrl;
     }
   }
 
@@ -157,6 +167,37 @@
               'Lihat Detail ' +
               '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
             '</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function syncTestimonials(testimonials) {
+    if (!testimonials || !Array.isArray(testimonials) || testimonials.length === 0) return;
+    var grid = document.querySelector('.testi-grid');
+    if (!grid) return;
+
+    var starSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#E52E2E"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+    var stars5 = starSvg + starSvg + starSvg + starSvg + starSvg;
+
+    grid.innerHTML = testimonials.map(function (item, idx) {
+      var delayClass = idx > 0 ? ' reveal--d' + Math.min(idx, 4) : '';
+      var badgeHtml = item.badge ? '<span class="testi-card__badge">' + item.badge + '</span>' : '';
+      var avatarHtml = item.photoUrl
+        ? '<img src="' + item.photoUrl + '" alt="' + item.name + '" loading="lazy" onerror="this.style.display=\'none\'">'
+        : (item.name ? item.name.charAt(0).toUpperCase() : 'C');
+
+      return '<div class="testi-card reveal' + delayClass + '">' +
+        '<div class="testi-card__quote">“</div>' +
+        '<div class="testi-card__stars">' + stars5 + '</div>' +
+        badgeHtml +
+        '<p class="testi-card__text">"' + item.quote + '"</p>' +
+        '<div class="testi-card__author">' +
+          '<div class="author-av">' + avatarHtml + '</div>' +
+          '<div>' +
+            '<p class="author-name">' + item.name + '</p>' +
+            '<p class="author-role">' + (item.role || item.company || '') + '</p>' +
           '</div>' +
         '</div>' +
       '</div>';

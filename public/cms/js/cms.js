@@ -5,14 +5,163 @@
 let contentData = null;
 let mediaList = [];
 let targetInputForPicker = null;
+let isAppInitialized = false;
 
-document.addEventListener('DOMContentLoaded', () => {
+const TOKEN_KEY = 'swa_cms_session_token';
+function getToken() { return localStorage.getItem(TOKEN_KEY); }
+function setToken(token) { localStorage.setItem(TOKEN_KEY, token); }
+function clearToken() { localStorage.removeItem(TOKEN_KEY); }
+
+document.addEventListener('DOMContentLoaded', async () => {
+  initAuth();
+  const authenticated = await checkAuth();
+  if (authenticated) {
+    initApp();
+  }
+});
+
+async function checkAuth() {
+  const token = getToken();
+  if (!token) {
+    showLoginScreen();
+    return false;
+  }
+  try {
+    const res = await fetch('/api/cms/auth/status', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const data = await res.json();
+    if (data && data.authenticated) {
+      showDashboard();
+      return true;
+    } else {
+      clearToken();
+      showLoginScreen();
+      return false;
+    }
+  } catch (e) {
+    clearToken();
+    showLoginScreen();
+    return false;
+  }
+}
+
+function showLoginScreen() {
+  const loginScreen = document.getElementById('cms-login-screen');
+  const appScreen = document.getElementById('cms-app');
+  if (loginScreen) loginScreen.style.display = 'flex';
+  if (appScreen) appScreen.style.display = 'none';
+}
+
+function showDashboard() {
+  const loginScreen = document.getElementById('cms-login-screen');
+  const appScreen = document.getElementById('cms-app');
+  if (loginScreen) loginScreen.style.display = 'none';
+  if (appScreen) appScreen.style.display = 'block';
+}
+
+function initAuth() {
+  const loginForm = document.getElementById('cms-login-form');
+  const errorEl = document.getElementById('login-error');
+  const togglePwdBtn = document.getElementById('btn-toggle-pwd');
+  const pwdInput = document.getElementById('login-password');
+  const logoutBtn = document.getElementById('btn-cms-logout');
+
+  if (togglePwdBtn && pwdInput) {
+    togglePwdBtn.addEventListener('click', () => {
+      const isPwd = pwdInput.type === 'password';
+      pwdInput.type = isPwd ? 'text' : 'password';
+      togglePwdBtn.setAttribute('title', isPwd ? 'Sembunyikan sandi' : 'Tampilkan sandi');
+    });
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const usernameInput = document.getElementById('login-username');
+      const username = usernameInput ? usernameInput.value.trim() : '';
+      const password = pwdInput ? pwdInput.value : '';
+      const btnLogin = document.getElementById('btn-login');
+
+      if (!username || !password) {
+        if (errorEl) {
+          errorEl.textContent = 'Mohon isi username dan password.';
+          errorEl.style.display = 'block';
+        }
+        return;
+      }
+
+      if (btnLogin) {
+        btnLogin.disabled = true;
+        const span = btnLogin.querySelector('span');
+        if (span) span.textContent = 'Memverifikasi...';
+      }
+      if (errorEl) errorEl.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/cms/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setToken(data.token);
+          if (pwdInput) pwdInput.value = '';
+          showDashboard();
+          initApp();
+        } else {
+          if (errorEl) {
+            errorEl.textContent = data.error || 'Username atau password salah.';
+            errorEl.style.display = 'block';
+          }
+        }
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = 'Koneksi ke server gagal. Pastikan server aktif.';
+          errorEl.style.display = 'block';
+        }
+      } finally {
+        if (btnLogin) {
+          btnLogin.disabled = false;
+          const span = btnLogin.querySelector('span');
+          if (span) span.textContent = 'Masuk ke Dashboard';
+        }
+      }
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      const token = getToken();
+      if (token) {
+        try {
+          await fetch('/api/cms/auth/logout', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + token }
+          });
+        } catch (e) {}
+      }
+      clearToken();
+      showLoginScreen();
+      showToast('Anda berhasil keluar.');
+    });
+  }
+}
+
+function initApp() {
+  if (isAppInitialized) {
+    loadContent();
+    loadMedia();
+    return;
+  }
+  isAppInitialized = true;
   initTabs();
   initDropzone();
   initSaveButtons();
   loadContent();
   loadMedia();
-});
+}
 
 // ── TAB SWITCHING ──
 function initTabs() {
@@ -31,6 +180,7 @@ function initTabs() {
 
       if (targetTab === 'richz') renderRichzList();
       if (targetTab === 'projects') renderProjectList();
+      if (targetTab === 'testimonials') renderTestimonialList();
     });
   });
 }
@@ -42,8 +192,10 @@ async function loadContent() {
     if (!res.ok) throw new Error('Gagal memuat data konten');
     contentData = await res.json();
     populateHeroForm();
+    populateCustomSolutionForm();
     renderRichzList();
     renderProjectList();
+    renderTestimonialList();
     populateContactForm();
   } catch (err) {
     showToast('Error: ' + err.message);
@@ -104,6 +256,30 @@ function updateHeroPreview() {
     box.innerHTML = `<video src="${url}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>`;
   } else {
     box.innerHTML = `<img src="${url}" alt="Preview" style="width:100%;height:100%;object-fit:cover;">`;
+  }
+}
+
+// ── CUSTOM SOLUTION IMAGE SETTINGS ──
+function populateCustomSolutionForm() {
+  if (!contentData) return;
+  const customSol = contentData.customSolution || {};
+  const input = document.getElementById('custom-sol-image-url');
+  if (input) {
+    input.value = customSol.imageUrl || '/assets/images/custom-solution-team.jpg';
+    updateCustomSolPreview();
+    input.addEventListener('input', updateCustomSolPreview);
+  }
+}
+
+function updateCustomSolPreview() {
+  const input = document.getElementById('custom-sol-image-url');
+  const box = document.getElementById('custom-sol-preview-box');
+  if (!input || !box) return;
+  const url = input.value.trim();
+  if (!url) {
+    box.innerHTML = '<span class="cms-preview-placeholder">Belum ada gambar solusi kustom yang dipilih</span>';
+  } else {
+    box.innerHTML = `<img src="${url}" alt="Custom Solution Preview" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='/assets/images/custom-solution-team.jpg'">`;
   }
 }
 
@@ -241,6 +417,144 @@ window.deleteProject = function(id) {
   showToast('Proyek berhasil dihapus');
 };
 
+// ── TESTIMONIALS SETTINGS ──
+function renderTestimonialList() {
+  const container = document.getElementById('testi-list-container');
+  if (!container || !contentData) return;
+
+  if (!contentData.testimonials) contentData.testimonials = [];
+
+  if (contentData.testimonials.length === 0) {
+    container.innerHTML = '<div class="cms-empty">Belum ada testimoni klien. Silakan klik "Tambah Testimoni Baru".</div>';
+    return;
+  }
+
+  container.innerHTML = contentData.testimonials.map((item) => `
+    <div class="cms-project-item" data-id="${item.id}">
+      <div class="cms-project-item__info">
+        <div class="cms-project-thumb-mini" style="border-radius:12px;overflow:hidden">
+          ${item.photoUrl ? `<img src="${item.photoUrl}" alt="${item.name}" onerror="this.style.display='none'">` : `<div style="font-weight:700;color:var(--red);">${item.name ? item.name.charAt(0) : 'T'}</div>`}
+        </div>
+        <div class="cms-project-item__text">
+          <h4>${item.name}</h4>
+          <div class="cms-project-item__meta">
+            <span><strong>Jabatan:</strong> ${item.role || item.company || '-'}</span>
+            <span>&bull;</span>
+            <span class="cms-badge-sm">${item.badge || 'Testimoni'}</span>
+          </div>
+          <p style="font-size:12px;color:#6B7280;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">"${item.quote}"</p>
+        </div>
+      </div>
+      <div class="cms-project-item__actions">
+        <button class="cms-btn cms-btn--sm cms-btn--outline" onclick="editTestimonial('${item.id}')">Edit</button>
+        <button class="cms-btn cms-btn--sm cms-btn--danger" onclick="deleteTestimonial('${item.id}')">Hapus</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+const btnAddTesti = document.getElementById('btn-add-testi');
+if (btnAddTesti) {
+  btnAddTesti.addEventListener('click', () => openTestiModal());
+}
+
+function openTestiModal(item = null) {
+  const modal = document.getElementById('testi-modal');
+  const titleEl = document.getElementById('testi-modal-title');
+  const idEl = document.getElementById('testi-edit-id');
+  const nameInput = document.getElementById('testi-edit-name');
+  const roleInput = document.getElementById('testi-edit-role');
+  const badgeInput = document.getElementById('testi-edit-badge');
+  const photoInput = document.getElementById('testi-edit-photo');
+  const quoteInput = document.getElementById('testi-edit-quote');
+
+  if (item) {
+    titleEl.textContent = 'Edit Testimoni Klien';
+    idEl.value = item.id;
+    nameInput.value = item.name || '';
+    roleInput.value = item.role || item.company || '';
+    badgeInput.value = item.badge || '';
+    photoInput.value = item.photoUrl || '';
+    quoteInput.value = item.quote || '';
+  } else {
+    titleEl.textContent = 'Tambah Testimoni Baru';
+    idEl.value = '';
+    nameInput.value = '';
+    roleInput.value = '';
+    badgeInput.value = '';
+    photoInput.value = '';
+    quoteInput.value = '';
+  }
+
+  modal.classList.add('open');
+}
+
+window.closeTestiModal = function() {
+  const modal = document.getElementById('testi-modal');
+  if (modal) modal.classList.remove('open');
+};
+
+const btnSaveTesti = document.getElementById('btn-save-testi-item');
+if (btnSaveTesti) {
+  btnSaveTesti.addEventListener('click', () => {
+    const id = document.getElementById('testi-edit-id').value;
+    const name = document.getElementById('testi-edit-name').value.trim();
+    const role = document.getElementById('testi-edit-role').value.trim();
+    const badge = document.getElementById('testi-edit-badge').value.trim();
+    const photoUrl = document.getElementById('testi-edit-photo').value.trim();
+    const quote = document.getElementById('testi-edit-quote').value.trim();
+
+    if (!name || !quote) {
+      alert('Nama dan isi testimoni tidak boleh kosong');
+      return;
+    }
+
+    if (!contentData.testimonials) contentData.testimonials = [];
+
+    if (id) {
+      const item = contentData.testimonials.find(t => t.id === id);
+      if (item) {
+        item.name = name;
+        item.role = role;
+        item.company = role;
+        item.badge = badge;
+        item.photoUrl = photoUrl;
+        item.quote = quote;
+      }
+    } else {
+      const newItem = {
+        id: 'tmn-' + Date.now(),
+        name,
+        role,
+        company: role,
+        badge,
+        photoUrl,
+        quote
+      };
+      contentData.testimonials.push(newItem);
+    }
+
+    renderTestimonialList();
+    closeTestiModal();
+    saveAllContent(false);
+    showToast('Testimoni berhasil disimpan!');
+  });
+}
+
+window.editTestimonial = function(id) {
+  if (!contentData || !contentData.testimonials) return;
+  const item = contentData.testimonials.find(t => t.id === id);
+  if (item) openTestiModal(item);
+};
+
+window.deleteTestimonial = function(id) {
+  if (!confirm('Apakah Anda yakin ingin menghapus testimoni ini?')) return;
+  contentData.testimonials = contentData.testimonials.filter(t => t.id !== id);
+  renderTestimonialList();
+  saveAllContent(false);
+  showToast('Testimoni berhasil dihapus');
+};
+
 // ── CONTACT SETTINGS ──
 function populateContactForm() {
   if (!contentData || !contentData.contact) return;
@@ -343,6 +657,10 @@ function uploadFile(file) {
 
   const xhr = new XMLHttpRequest();
   xhr.open('POST', '/api/cms/upload', true);
+  const token = getToken();
+  if (token) {
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+  }
 
   xhr.upload.onprogress = (e) => {
     if (e.lengthComputable) {
@@ -356,6 +674,13 @@ function uploadFile(file) {
     progressBox.style.display = 'none';
     fill.style.width = '0%';
     document.getElementById('file-input').value = '';
+
+    if (xhr.status === 401) {
+      clearToken();
+      showLoginScreen();
+      showToast('Sesi telah habis, silakan login kembali.');
+      return;
+    }
 
     if (xhr.status === 200) {
       const res = JSON.parse(xhr.responseText);
@@ -377,7 +702,17 @@ function uploadFile(file) {
 window.deleteMedia = async function(filename) {
   if (!confirm('Hapus file ' + filename + '? Tindakan ini tidak dapat dibatalkan.')) return;
   try {
-    const res = await fetch('/api/cms/media/' + encodeURIComponent(filename), { method: 'DELETE' });
+    const token = getToken();
+    const res = await fetch('/api/cms/media/' + encodeURIComponent(filename), {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.status === 401) {
+      clearToken();
+      showLoginScreen();
+      showToast('Sesi telah habis, silakan login kembali.');
+      return;
+    }
     if (!res.ok) throw new Error('Gagal menghapus file');
     showToast('File berhasil dihapus');
     loadMedia();
@@ -453,6 +788,14 @@ async function saveAllContent(showNotification = true) {
     ctaPrimaryLink: document.getElementById('hero-cta-link').value.trim()
   };
 
+  // 1b. Gather Custom Solution Image
+  const customSolInput = document.getElementById('custom-sol-image-url');
+  if (customSolInput) {
+    contentData.customSolution = {
+      imageUrl: customSolInput.value.trim() || '/assets/images/custom-solution-team.jpg'
+    };
+  }
+
   // 2. Gather Contact
   contentData.contact = {
     email: document.getElementById('contact-email').value.trim(),
@@ -465,11 +808,21 @@ async function saveAllContent(showNotification = true) {
   };
 
   try {
+    const token = getToken();
     const res = await fetch('/api/cms/content', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
       body: JSON.stringify(contentData)
     });
+    if (res.status === 401) {
+      clearToken();
+      showLoginScreen();
+      showToast('Sesi telah habis, silakan login kembali.');
+      return;
+    }
     if (!res.ok) throw new Error('Gagal menyimpan ke server');
     if (showNotification) showToast('Semua perubahan berhasil disimpan ke website!');
   } catch (err) {
