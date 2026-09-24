@@ -790,7 +790,7 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 }
 
 .richz-card__media {
-  height: 205px;
+  height: 350px;
   border-radius: 18px;
   overflow: hidden;
   background: #FFFFFF;
@@ -799,10 +799,11 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   transition: transform 0.4s ease;
 }
 .richz-card:hover .richz-card__media img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .richz-card__content {
@@ -821,6 +822,18 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   color: #FFFFFF;
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+.richz-card__icon--logo {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 4px;
+}
+.richz-card__icon--logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
 }
 .richz-card__text h4 {
   font-family: var(--font-d);
@@ -838,10 +851,11 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 
 @media (max-width: 1024px) {
   .richz-grid { grid-template-columns: repeat(2, 1fr); }
+  .richz-card__media { height: 340px; }
 }
 @media (max-width: 600px) {
   .richz-grid { grid-template-columns: 1fr; }
-  .richz-card__media { height: 180px; }
+  .richz-card__media { height: 330px; }
 }
 
 /* ═══════════════════════════════════════════════════════════

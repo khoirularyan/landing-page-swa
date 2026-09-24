@@ -915,6 +915,7 @@ function openRichzModal(prod = null) {
   const colorInput = document.getElementById('richz-edit-color');
   const iconInput = document.getElementById('richz-edit-icon');
   const imgInput = document.getElementById('richz-edit-image');
+  const logoInput = document.getElementById('richz-edit-logo');
   const linkInput = document.getElementById('richz-edit-link');
 
   if (prod) {
@@ -926,6 +927,7 @@ function openRichzModal(prod = null) {
     colorInput.value = prod.accentColor || 'red';
     iconInput.value = prod.icon || 'store';
     imgInput.value = prod.imageUrl || '';
+    if (logoInput) logoInput.value = prod.logoUrl || '';
     linkInput.value = prod.link || '/layanan';
   } else {
     titleEl.textContent = 'Tambah Produk Richz Baru';
@@ -936,6 +938,7 @@ function openRichzModal(prod = null) {
     colorInput.value = 'red';
     iconInput.value = 'store';
     imgInput.value = '';
+    if (logoInput) logoInput.value = '';
     linkInput.value = '/layanan';
   }
 
@@ -956,6 +959,7 @@ if (btnSaveRichz) {
     const accentColor = document.getElementById('richz-edit-color').value;
     const icon = document.getElementById('richz-edit-icon').value;
     const imageUrl = document.getElementById('richz-edit-image').value.trim();
+    const logoUrl = document.getElementById('richz-edit-logo')?.value.trim() || '';
     const link = document.getElementById('richz-edit-link').value.trim() || '/layanan';
 
     if (!suffix) {
@@ -977,6 +981,7 @@ if (btnSaveRichz) {
         item.accentColor = accentColor;
         item.icon = icon;
         item.imageUrl = imageUrl;
+        item.logoUrl = logoUrl;
         item.link = link;
       }
     } else {
@@ -989,6 +994,7 @@ if (btnSaveRichz) {
         accentColor,
         icon,
         imageUrl,
+        logoUrl,
         link
       };
       contentData.richz.push(newProd);

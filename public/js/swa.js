@@ -129,7 +129,11 @@
                        item.accentColor === 'orange' ? 'richz-card--fnb' :
                        item.accentColor === 'green' ? 'richz-card--spot' : 'richz-card--pos';
 
-      var iconSvg = iconMap[item.icon] || iconMap.store;
+      var hasLogo = !!item.logoUrl;
+      var iconContent = hasLogo
+        ? '<img src="' + item.logoUrl + '" alt="' + item.name + ' Logo" class="richz-card__logo-img">'
+        : (iconMap[item.icon] || iconMap.store);
+      var iconClass = 'richz-card__icon' + (hasLogo ? ' richz-card__icon--logo' : '');
       var delayClass = idx > 0 ? ' reveal--d' + Math.min(idx, 4) : '';
 
       return '<a href="' + (item.link || '/layanan') + '" class="richz-card ' + colorClass + ' reveal' + delayClass + '">' +
@@ -137,7 +141,7 @@
           '<img src="' + (item.imageUrl || 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=600&q=80') + '" alt="' + item.name + '" loading="lazy">' +
         '</div>' +
         '<div class="richz-card__content">' +
-          '<div class="richz-card__icon">' + iconSvg + '</div>' +
+          '<div class="' + iconClass + '">' + iconContent + '</div>' +
           '<div class="richz-card__text">' +
             '<h4>' + (item.brandPrefix || 'Richz') + '<span class="richz-title-accent">' + (item.brandSuffix || '') + '</span></h4>' +
             '<p>' + (item.category || '') + '</p>' +
