@@ -64,24 +64,6 @@
       "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
       "link": "/kontak",
       "featured": true
-    },
-    {
-      "id": "proj-5",
-      "category": "Audit & Assessment ERP",
-      "title": "Assessment Sistem ERP di PT. Gamma Buana Persada",
-      "client": "PT. Gamma Buana Persada",
-      "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
-      "link": "/kontak",
-      "featured": true
-    },
-    {
-      "id": "proj-6",
-      "category": "Edutech & Pembelajaran",
-      "title": "Demo Sistem Pembelajaran Farmasi pada Dosen Politeknik Indonusa",
-      "client": "Politeknik Indonusa",
-      "imageUrl": "/assets/images/portfolio/cobra-dental.png",
-      "link": "/kontak",
-      "featured": true
     }
   ],
   "testimonials": [
@@ -171,7 +153,7 @@
       "brandPrefix": "Richz",
       "brandSuffix": "SPOT",
       "category": "Attendance",
-      "imageUrl": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "/assets/images/richz-spot.jpg",
       "accentColor": "green",
       "icon": "fingerprint",
       "link": "/layanan"

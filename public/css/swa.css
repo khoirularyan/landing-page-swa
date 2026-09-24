@@ -377,7 +377,7 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 .sec-desc { font-size: 16px; color: var(--gray-500); line-height: 1.75; }
 
 /* ── PROJECT CARDS GRID (RentDrive Style) ── */
-.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
 .project-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: all var(--t); display: flex; flex-direction: column; }
 .project-card:hover { border-color: var(--red-border); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .project-card__thumb {
@@ -781,6 +781,12 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 }
 .richz-card--spot .richz-title-accent {
   color: #10B981;
+}
+.richz-card--spot .richz-card__media {
+  background: #F1F5F9;
+}
+.richz-card--spot .richz-card__media img {
+  object-position: top center;
 }
 
 .richz-card__media {
