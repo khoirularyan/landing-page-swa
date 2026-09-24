@@ -107,6 +107,10 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
           Portfolio &amp; Project
         </button>
+        <button class="cms-nav-item" data-tab="gallery">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Galeri Project
+        </button>
         <button class="cms-nav-item" data-tab="testimonials">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Testimoni Klien
@@ -309,6 +313,24 @@
 
         <div class="cms-project-list" id="project-list-container">
           <!-- Project items rendered dynamically -->
+        </div>
+      </section>
+
+      <!-- ════ TAB: GALERI PROJECT ════ -->
+      <section class="cms-pane" id="pane-gallery">
+        <div class="cms-pane__header">
+          <div>
+            <h1 class="cms-pane__title">Galeri Project &amp; Dokumentasi</h1>
+            <p class="cms-pane__desc">Kelola dokumentasi visual implementasi sistem, demo aplikasi, assessment, dan handover di halaman /galeri. Lengkap dengan kategori, nama klien, foto, dan deskripsi.</p>
+          </div>
+          <button class="cms-btn cms-btn--primary" id="btn-add-gallery">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Tambah Foto Galeri
+          </button>
+        </div>
+
+        <div class="cms-project-list" id="gallery-list-container">
+          <!-- Gallery items rendered dynamically -->
         </div>
       </section>
 
@@ -516,6 +538,47 @@
       <div class="cms-modal__footer">
         <button type="button" class="cms-btn cms-btn--secondary" onclick="closeProjectModal()">Batal</button>
         <button type="button" class="cms-btn cms-btn--primary" id="btn-save-project-item">Simpan Proyek</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT / ADD GALLERY MODAL -->
+  <div class="cms-modal" id="gallery-modal">
+    <div class="cms-modal__content">
+      <div class="cms-modal__header">
+        <h3 id="gallery-modal-title">Edit Item Galeri</h3>
+        <button type="button" class="cms-modal__close" onclick="closeGalleryModal()">&times;</button>
+      </div>
+      <div class="cms-modal__body">
+        <input type="hidden" id="gal-edit-id">
+        <div class="cms-field">
+          <label class="cms-label">Judul Proyek / Dokumentasi:</label>
+          <input type="text" class="cms-input" id="gal-edit-title" placeholder="Contoh: SIT Sistem ERP PT. Fokus Jasa Mitra (FJM)">
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Nama Klien / Instansi:</label>
+          <input type="text" class="cms-input" id="gal-edit-client" placeholder="Contoh: PT. Fokus Jasa Mitra (FJM)">
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Kategori Galeri:</label>
+          <input type="text" class="cms-input" id="gal-edit-category" placeholder="Contoh: ERP & Bisnis, Mobile App, Konsultasi & Analisis, Web Platform">
+          <span class="cms-help">Kategori umum: ERP &amp; Bisnis, Mobile App, Konsultasi &amp; Analisis, Web Platform</span>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">URL / File Foto Dokumentasi:</label>
+          <div class="cms-input-group">
+            <input type="text" class="cms-input" id="gal-edit-image" placeholder="/assets/images/projects/project-1.jpeg atau /uploads/...">
+            <button type="button" class="cms-btn cms-btn--outline" onclick="openMediaPicker('gal-edit-image')">Pilih Foto</button>
+          </div>
+        </div>
+        <div class="cms-field">
+          <label class="cms-label">Deskripsi / Penjelasan Implementasi:</label>
+          <textarea class="cms-textarea" id="gal-edit-desc" rows="4" placeholder="Tuliskan ulasan atau penjelasan kegiatan implementasi sistem ini..."></textarea>
+        </div>
+      </div>
+      <div class="cms-modal__footer">
+        <button type="button" class="cms-btn cms-btn--secondary" onclick="closeGalleryModal()">Batal</button>
+        <button type="button" class="cms-btn cms-btn--primary" id="btn-save-gallery-item">Simpan Item Galeri</button>
       </div>
     </div>
   </div>

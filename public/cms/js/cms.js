@@ -180,6 +180,7 @@ function initTabs() {
 
       if (targetTab === 'richz') renderRichzList();
       if (targetTab === 'projects') renderProjectList();
+      if (targetTab === 'gallery') renderGalleryList();
       if (targetTab === 'testimonials') renderTestimonialList();
     });
   });
@@ -195,6 +196,7 @@ async function loadContent() {
     populateCustomSolutionForm();
     renderRichzList();
     renderProjectList();
+    renderGalleryList();
     renderTestimonialList();
     populateContactForm();
   } catch (err) {
@@ -415,6 +417,144 @@ window.deleteProject = function(id) {
   renderProjectList();
   saveAllContent(false);
   showToast('Proyek berhasil dihapus');
+};
+
+// ── GALLERY PROJECT SETTINGS ──
+function renderGalleryList() {
+  const container = document.getElementById('gallery-list-container');
+  if (!container || !contentData) return;
+
+  if (!contentData.gallery) contentData.gallery = [];
+
+  if (contentData.gallery.length === 0) {
+    container.innerHTML = '<div class="cms-empty">Belum ada item galeri proyek. Silakan klik "Tambah Foto Galeri".</div>';
+    return;
+  }
+
+  container.innerHTML = contentData.gallery.map((item) => `
+    <div class="cms-project-item" data-id="${item.id}">
+      <div class="cms-project-item__info">
+        <div class="cms-project-thumb-mini" style="border-radius:10px;overflow:hidden">
+          ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.title}" onerror="this.src='/assets/images/projects/project-3.jpeg'">` : `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`}
+        </div>
+        <div class="cms-project-item__text">
+          <h4>${item.title}</h4>
+          <div class="cms-project-item__meta">
+            <span><strong>Klien:</strong> ${item.client || '-'}</span>
+            <span>&bull;</span>
+            <span class="cms-badge-sm">${item.category || 'Dokumentasi'}</span>
+          </div>
+          ${item.description ? `<p style="font-size:12px;color:#6B7280;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${item.description}</p>` : ''}
+        </div>
+      </div>
+      <div class="cms-project-item__actions">
+        <button class="cms-btn cms-btn--sm cms-btn--outline" onclick="editGallery('${item.id}')">Edit</button>
+        <button class="cms-btn cms-btn--sm cms-btn--danger" onclick="deleteGallery('${item.id}')">Hapus</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+const btnAddGallery = document.getElementById('btn-add-gallery');
+if (btnAddGallery) {
+  btnAddGallery.addEventListener('click', () => {
+    openGalleryModal();
+  });
+}
+
+function openGalleryModal(gal = null) {
+  const modal = document.getElementById('gallery-modal');
+  const titleEl = document.getElementById('gallery-modal-title');
+  const idEl = document.getElementById('gal-edit-id');
+  const titleInput = document.getElementById('gal-edit-title');
+  const clientInput = document.getElementById('gal-edit-client');
+  const catInput = document.getElementById('gal-edit-category');
+  const imgInput = document.getElementById('gal-edit-image');
+  const descInput = document.getElementById('gal-edit-desc');
+
+  if (gal) {
+    titleEl.textContent = 'Edit Item Galeri';
+    idEl.value = gal.id;
+    titleInput.value = gal.title || '';
+    clientInput.value = gal.client || '';
+    catInput.value = gal.category || '';
+    imgInput.value = gal.imageUrl || '';
+    descInput.value = gal.description || '';
+  } else {
+    titleEl.textContent = 'Tambah Foto Galeri Baru';
+    idEl.value = '';
+    titleInput.value = '';
+    clientInput.value = '';
+    catInput.value = 'ERP & Bisnis';
+    imgInput.value = '';
+    descInput.value = '';
+  }
+
+  modal.classList.add('open');
+}
+
+window.closeGalleryModal = function() {
+  const modal = document.getElementById('gallery-modal');
+  if (modal) modal.classList.remove('open');
+};
+
+const btnSaveGalleryItem = document.getElementById('btn-save-gallery-item');
+if (btnSaveGalleryItem) {
+  btnSaveGalleryItem.addEventListener('click', () => {
+    const id = document.getElementById('gal-edit-id').value;
+    const title = document.getElementById('gal-edit-title').value.trim();
+    const client = document.getElementById('gal-edit-client').value.trim();
+    const category = document.getElementById('gal-edit-category').value.trim();
+    const imageUrl = document.getElementById('gal-edit-image').value.trim();
+    const description = document.getElementById('gal-edit-desc').value.trim();
+
+    if (!title) {
+      alert('Judul proyek tidak boleh kosong');
+      return;
+    }
+
+    if (!contentData.gallery) contentData.gallery = [];
+
+    if (id) {
+      const item = contentData.gallery.find(g => g.id === id);
+      if (item) {
+        item.title = title;
+        item.client = client;
+        item.category = category;
+        item.imageUrl = imageUrl;
+        item.description = description;
+      }
+    } else {
+      const newItem = {
+        id: 'gal-' + Date.now(),
+        title,
+        client,
+        category,
+        imageUrl,
+        description
+      };
+      contentData.gallery.unshift(newItem);
+    }
+
+    renderGalleryList();
+    closeGalleryModal();
+    saveAllContent(false);
+    showToast('Item galeri berhasil diperbarui!');
+  });
+}
+
+window.editGallery = function(id) {
+  if (!contentData || !contentData.gallery) return;
+  const item = contentData.gallery.find(g => g.id === id);
+  if (item) openGalleryModal(item);
+};
+
+window.deleteGallery = function(id) {
+  if (!confirm('Apakah Anda yakin ingin menghapus item galeri ini?')) return;
+  contentData.gallery = contentData.gallery.filter(g => g.id !== id);
+  renderGalleryList();
+  saveAllContent(false);
+  showToast('Item galeri berhasil dihapus');
 };
 
 // ── TESTIMONIALS SETTINGS ──
