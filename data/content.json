@@ -120,7 +120,8 @@
       "brandPrefix": "Richz",
       "brandSuffix": "POS",
       "category": "Retail",
-      "imageUrl": "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=600&q=80",
+      "imageUrl": "/assets/images/richz-pos.jpg",
+      "logoUrl": "/assets/images/richz-pos-icon.png",
       "accentColor": "red",
       "icon": "store",
       "link": "/layanan"
