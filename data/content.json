@@ -35,7 +35,7 @@
       "title": "E-Commerce & Distribusi Alat Kedokteran Gigi",
       "client": "PT Cobra Dental Indonesia",
       "imageUrl": "/assets/images/portfolio/cobra-dental.png",
-      "link": "/kontak",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20E-Commerce%20PT%20Cobra%20Dental%20Indonesia",
       "featured": true
     },
     {
@@ -44,7 +44,7 @@
       "title": "HEMS - Heavy Equipment Management System",
       "client": "PT Petrokimia Gresik (SBU JPP)",
       "imageUrl": "/assets/images/portfolio/hems-petrokimia.png",
-      "link": "/kontak",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20HEMS%20Petrokimia%20Gresik",
       "featured": true
     },
     {
@@ -53,7 +53,7 @@
       "title": "Portal Operasional & Layanan Terpadu JPP",
       "client": "PT Petrokimia Gresik",
       "imageUrl": "/assets/images/portfolio/petrokimia-expressa.png",
-      "link": "/kontak",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Portal%20Terpadu%20Petrokimia%20Gresik",
       "featured": true
     },
     {
@@ -62,7 +62,52 @@
       "title": "Sistem Pengadaan Barang & Operasional Terpadu",
       "client": "PT Fokus Jasa Mitra (FJM)",
       "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
-      "link": "/kontak",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Sistem%20ERP%20FJM",
+      "featured": true
+    },
+    {
+      "id": "proj-5",
+      "category": "Retail & Point of Sale",
+      "title": "Dashboard Admin & Point of Sale (POS) Multi-Cabang",
+      "client": "GREY AREA FLOCK (RichzPOS)",
+      "imageUrl": "/assets/images/portfolio/richz-pos-dashboard.png",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Dashboard%20Admin%20RichzPOS%20Grey%20Area%20Flock",
+      "featured": true
+    },
+    {
+      "id": "proj-6",
+      "category": "HRIS & Workforce Management",
+      "title": "Monitoring Presensi & Manajemen HRIS Real-Time",
+      "client": "Pratter Cabang (RichzSpot)",
+      "imageUrl": "/assets/images/portfolio/richz-spot-dashboard.png",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Dashboard%20HRIS%20RichzSpot%20Pratter",
+      "featured": true
+    },
+    {
+      "id": "proj-7",
+      "category": "E-Commerce & Omnichannel",
+      "title": "Platform E-Commerce & Retail Toko Online Terintegrasi",
+      "client": "Aisya Store (RichzStore)",
+      "imageUrl": "/assets/images/portfolio/richz-store.jpg",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Platform%20E-Commerce%20RichzStore%20Aisya%20Store",
+      "featured": true
+    },
+    {
+      "id": "proj-8",
+      "category": "Point of Sale Mobile",
+      "title": "Aplikasi Kasir Mobile & Cetak Struk Transaksi",
+      "client": "RichzPOS Mobile",
+      "imageUrl": "/assets/images/portfolio/richz-pos-mobile.jpg",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Aplikasi%20RichzPOS%20Mobile",
+      "featured": true
+    },
+    {
+      "id": "proj-9",
+      "category": "Presensi & Geo-Tagging",
+      "title": "Aplikasi Presensi Online & Self-Service Karyawan",
+      "client": "RichzSpot Mobile",
+      "imageUrl": "/assets/images/portfolio/richz-spot-mobile.jpg",
+      "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Aplikasi%20RichzSpot%20Mobile",
       "featured": true
     }
   ],
@@ -136,17 +181,6 @@
       "logoUrl": "/assets/images/richz-store-icon.png",
       "accentColor": "blue",
       "icon": "cart",
-      "link": "/layanan"
-    },
-    {
-      "id": "richz-3",
-      "name": "RichzFNB",
-      "brandPrefix": "Richz",
-      "brandSuffix": "FNB",
-      "category": "Food & Beverage",
-      "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
-      "accentColor": "orange",
-      "icon": "utensils",
       "link": "/layanan"
     },
     {

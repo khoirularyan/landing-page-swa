@@ -161,15 +161,17 @@
         ? '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><img src="' + item.imageUrl + '" alt="' + item.title + '" loading="lazy"></div>'
         : '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><div class="project-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>';
 
+      var linkTarget = (item.link && item.link.indexOf('http') === 0) ? ' target="_blank" rel="noopener noreferrer"' : '';
+
       return '<div class="project-card reveal">' +
         thumbHtml +
         '<div class="project-card__body">' +
           '<span class="project-card__client">' + (item.client || '') + '</span>' +
-          '<h3 class="project-card__title">' + item.title + '</h3>' +
+          '<h4 class="project-card__title">' + item.title + '</h4>' +
           '<div class="project-card__footer">' +
-            '<a href="' + (item.link || '/kontak') + '" class="project-card__link">' +
+            '<a href="' + (item.link || '/kontak') + '"' + linkTarget + ' class="project-card__link">' +
               'Lihat Detail ' +
-              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+              '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
             '</a>' +
           '</div>' +
         '</div>' +

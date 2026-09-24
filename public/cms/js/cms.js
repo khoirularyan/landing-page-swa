@@ -963,7 +963,7 @@ if (btnSaveRichz) {
     const link = document.getElementById('richz-edit-link').value.trim() || '/layanan';
 
     if (!suffix) {
-      alert('Mohon isi akhiran nama produk (contoh: POS, Store, FNB, dll)');
+      alert('Mohon isi akhiran nama produk (contoh: POS, Store, SPOT, dll)');
       return;
     }
 

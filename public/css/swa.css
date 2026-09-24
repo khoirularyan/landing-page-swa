@@ -377,11 +377,11 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 .sec-desc { font-size: 16px; color: var(--gray-500); line-height: 1.75; }
 
 /* ── PROJECT CARDS GRID (RentDrive Style) ── */
-.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .project-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: all var(--t); display: flex; flex-direction: column; }
 .project-card:hover { border-color: var(--red-border); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .project-card__thumb {
-  height: 190px;
+  height: 200px;
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -391,6 +391,7 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -723,8 +724,8 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
    ═══════════════════════════════════════════════════════════ */
 .richz-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 .richz-card {
   border-radius: 24px;
@@ -851,7 +852,7 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   margin-top: 2px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .richz-grid { grid-template-columns: repeat(2, 1fr); }
   .richz-card__media { height: 340px; }
 }
