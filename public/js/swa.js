@@ -151,33 +151,168 @@
     }).join('');
   }
 
+  var currentProjects = [];
+
   function syncProjects(projects) {
-    // Only run on pages that have .project-grid (e.g. /proyek)
-    var grid = document.querySelector('.project-grid');
-    if (!grid || !projects || !Array.isArray(projects) || projects.length === 0) return;
+    if (!projects || !Array.isArray(projects) || projects.length === 0) return;
+    currentProjects = projects;
 
-    grid.innerHTML = projects.map(function (item) {
-      var thumbHtml = item.imageUrl
-        ? '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><img src="' + item.imageUrl + '" alt="' + item.title + '" loading="lazy"></div>'
-        : '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><div class="project-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>';
+    var webGrid = document.querySelector('.project-grid');
+    var mobileGrid = document.querySelector('.mobile-project-grid');
 
-      var linkTarget = (item.link && item.link.indexOf('http') === 0) ? ' target="_blank" rel="noopener noreferrer"' : '';
+    var webProjects = projects.filter(function (item) { return !item.isMobile; });
+    var mobileProjects = projects.filter(function (item) { return !!item.isMobile; });
 
-      return '<div class="project-card reveal">' +
-        thumbHtml +
-        '<div class="project-card__body">' +
-          '<span class="project-card__client">' + (item.client || '') + '</span>' +
-          '<h4 class="project-card__title">' + item.title + '</h4>' +
-          '<div class="project-card__footer">' +
-            '<a href="' + (item.link || '/kontak') + '"' + linkTarget + ' class="project-card__link">' +
-              'Lihat Detail ' +
-              '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
-            '</a>' +
+    // Render Web & Enterprise ERP Projects
+    if (webGrid && webProjects.length > 0) {
+      webGrid.innerHTML = webProjects.map(function (item) {
+        var thumbHtml = item.imageUrl
+          ? '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><img src="' + item.imageUrl + '" alt="' + item.title + '" loading="lazy"></div>'
+          : '<div class="project-card__thumb"><span class="project-card__badge">' + (item.category || 'ERP') + '</span><div class="project-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>';
+
+        return '<div class="project-card reveal" data-project-id="' + item.id + '" onclick="openProjectModal(\'' + item.id + '\')">' +
+          thumbHtml +
+          '<div class="project-card__body">' +
+            '<span class="project-card__client">' + (item.client || '') + '</span>' +
+            '<h4 class="project-card__title">' + item.title + '</h4>' +
+            '<div class="project-card__footer">' +
+              '<button type="button" class="project-card__link" onclick="event.stopPropagation(); openProjectModal(\'' + item.id + '\')">' +
+                'Lihat Detail ' +
+                '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+              '</button>' +
+            '</div>' +
           '</div>' +
-        '</div>' +
-      '</div>';
-    }).join('');
+        '</div>';
+      }).join('');
+    }
+
+    // Render Mobile Apps Projects
+    if (mobileGrid && mobileProjects.length > 0) {
+      mobileGrid.innerHTML = mobileProjects.map(function (item) {
+        var logoHtml = item.logoUrl
+          ? '<img src="' + item.logoUrl + '" alt="' + item.client + ' Logo" class="mobile-project-card__logo">'
+          : '';
+
+        return '<div class="mobile-project-card reveal" data-project-id="' + item.id + '" onclick="openProjectModal(\'' + item.id + '\')">' +
+          '<div class="mobile-project-card__media">' +
+            '<span class="mobile-project-card__badge">' + (item.category || 'Mobile App') + '</span>' +
+            '<img src="' + item.imageUrl + '" alt="' + item.title + '" loading="lazy">' +
+          '</div>' +
+          '<div class="mobile-project-card__body">' +
+            '<div class="mobile-project-card__client-row">' +
+              logoHtml +
+              '<span class="mobile-project-card__client">' + (item.client || '') + '</span>' +
+            '</div>' +
+            '<h4 class="mobile-project-card__title">' + item.title + '</h4>' +
+            '<div class="mobile-project-card__footer">' +
+              '<button type="button" class="mobile-project-card__btn" onclick="event.stopPropagation(); openProjectModal(\'' + item.id + '\')">' +
+                'Lihat Detail ' +
+                '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>' +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
   }
+
+  window.openProjectModal = function (projectId) {
+    var modalOverlay = document.getElementById('project-modal-overlay');
+    if (!modalOverlay) return;
+
+    var project = currentProjects.find(function(p) { return p.id === projectId; });
+    if (!project) {
+      var card = document.querySelector('[data-project-id="' + projectId + '"]');
+      if (card) {
+        var descAttr = card.getAttribute('data-project-desc') || '';
+        var featAttr = card.getAttribute('data-project-features') || '';
+        var feats = [];
+        try {
+          if (featAttr) feats = JSON.parse(featAttr);
+        } catch (e) {}
+
+        project = {
+          id: projectId,
+          title: card.querySelector('.project-card__title, .mobile-project-card__title')?.textContent || 'Detail Proyek',
+          client: card.querySelector('.project-card__client, .mobile-project-card__client')?.textContent || '',
+          category: card.querySelector('.project-card__badge, .mobile-project-card__badge')?.textContent || '',
+          imageUrl: card.querySelector('img')?.src || '',
+          link: card.getAttribute('data-project-link') || 'https://wa.me/6282326743025',
+          description: descAttr,
+          features: feats
+        };
+      }
+    }
+    if (!project) return;
+
+    var imgEl = document.getElementById('pm-preview-img');
+    var badgeEl = document.getElementById('pm-badge');
+    var clientEl = document.getElementById('pm-client');
+    var titleEl = document.getElementById('pm-title');
+    var descEl = document.getElementById('pm-desc');
+    var featList = document.getElementById('pm-features-list');
+    var waBtn = document.getElementById('pm-wa-btn');
+
+    if (imgEl) {
+      imgEl.src = project.imageUrl || '';
+      imgEl.alt = project.title || 'Preview Proyek';
+    }
+    if (badgeEl) badgeEl.textContent = project.category || 'Portfolio';
+    if (clientEl) clientEl.textContent = project.client || 'PT SWA Digital Solusindo';
+    if (titleEl) titleEl.textContent = project.title || '';
+    if (descEl) descEl.textContent = project.description || 'Solusi digital terintegrasi yang dikembangkan oleh SWA Digital Solusindo (Expressa Group) untuk meningkatkan efisiensi operasional dan automasi bisnis.';
+
+    if (featList) {
+      var features = Array.isArray(project.features) && project.features.length > 0
+        ? project.features
+        : [
+            'Arsitektur Scalable & Enterprise-Ready',
+            'Integrasi Data Real-Time & Multi-Platform',
+            'UI/UX Responsif & User-Friendly',
+            'Dukungan Pemeliharaan & SLA Terjamin'
+          ];
+
+      featList.innerHTML = features.map(function(f) {
+        return '<li class="proj-modal__feature-item">' +
+          '<div class="proj-modal__feature-icon">' +
+            '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+          '</div>' +
+          '<span>' + f + '</span>' +
+        '</li>';
+      }).join('');
+    }
+
+    if (waBtn) {
+      var waUrl = project.link && project.link.indexOf('http') === 0
+        ? project.link
+        : 'https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20dengan%20proyek:%20' + encodeURIComponent(project.title);
+      waBtn.href = waUrl;
+    }
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeProjectModal = function () {
+    var modalOverlay = document.getElementById('project-modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.classList.remove('open');
+    }
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('click', function(e) {
+    var modalOverlay = document.getElementById('project-modal-overlay');
+    if (modalOverlay && e.target === modalOverlay) {
+      window.closeProjectModal();
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      window.closeProjectModal();
+    }
+  });
 
   function syncTestimonials(testimonials) {
     if (!testimonials || !Array.isArray(testimonials) || testimonials.length === 0) return;

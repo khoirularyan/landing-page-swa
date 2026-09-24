@@ -36,7 +36,15 @@
       "client": "PT Cobra Dental Indonesia",
       "imageUrl": "/assets/images/portfolio/cobra-dental.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20E-Commerce%20PT%20Cobra%20Dental%20Indonesia",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Platform e-commerce B2B dan sistem manajemen distribusi alat kesehatan kedokteran gigi terbesar di Indonesia. Dilengkapi integrasi multi-cabang, kalkulasi PPN otomatis, manajemen stok batch/lot kedokteran, hingga pelacakan logistik pengiriman terpusat.",
+      "features": [
+        "Multi-Branch Inventory & Batch Expiry Tracking",
+        "Sistem Pembayaran B2B & PPN Terintegrasi Otomatis",
+        "Portal Pemesanan Khusus Klinik & Dokter Gigi",
+        "Pelacakan Status Pengiriman & Surat Jalan Real-Time"
+      ]
     },
     {
       "id": "proj-2",
@@ -45,7 +53,15 @@
       "client": "PT Petrokimia Gresik (SBU JPP)",
       "imageUrl": "/assets/images/portfolio/hems-petrokimia.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20HEMS%20Petrokimia%20Gresik",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Sistem manajemen operasional dan pemeliharaan alat berat berskala enterprise. Memfasilitasi penjadwalan preventive maintenance, audit jam kerja mesin, konsumsi bahan bakar, serta kalkulasi otomatis biaya sewa dan utilisasi per jam kerja.",
+      "features": [
+        "Automated Preventive Maintenance Scheduling",
+        "Real-Time Machine Operating Hours & Fuel Audit",
+        "Digital Logbook & Checklist Inspeksi Harian",
+        "Modul Billing & Cost Recovery Terintegrasi"
+      ]
     },
     {
       "id": "proj-3",
@@ -54,7 +70,15 @@
       "client": "PT Petrokimia Gresik",
       "imageUrl": "/assets/images/portfolio/petrokimia-expressa.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Portal%20Terpadu%20Petrokimia%20Gresik",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Portal satu pintu untuk operasional dan pelayanan internal SBU Jasa Pelayanan Pabrik (JPP). Mengintegrasikan workflow perizinan kerja, surat tugas teknisi, monitoring proyek fabrikasi, dan pelaporan keselamatan kerja (K3) dalam satu dashboard terpusat.",
+      "features": [
+        "Workflow Approval Dokumen & Surat Tugas Bertingkat",
+        "Monitoring Milestone Proyek Fabrikasi & Sipil",
+        "Pelaporan Insiden & Kepatuhan K3 Terintegrasi",
+        "Dashboard Executive Monitoring KPI Divisi"
+      ]
     },
     {
       "id": "proj-4",
@@ -63,7 +87,15 @@
       "client": "PT Fokus Jasa Mitra (FJM)",
       "imageUrl": "/assets/images/portfolio/fjm-pengadaan.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Sistem%20ERP%20FJM",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Solusi supply chain dan sistem procurement menyeluruh untuk kebutuhan operasional penyediaan tenaga kerja dan outsourcing terintegrasi. Mencakup tender pengadaan vendor, perbandingan harga otomatis, monitoring PO, serta verifikasi faktur digital.",
+      "features": [
+        "e-Procurement & Evaluasi Penawaran Vendor Otomatis",
+        "Purchase Requisition (PR) ke Purchase Order (PO) Cepat",
+        "Verifikasi Kelayakan Faktur & Integrasi Akuntansi",
+        "Audit Trail Lengkap Setiap Tahapan Pengadaan"
+      ]
     },
     {
       "id": "proj-5",
@@ -72,7 +104,15 @@
       "client": "GREY AREA FLOCK (RichzPOS)",
       "imageUrl": "/assets/images/portfolio/richz-pos-dashboard.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Dashboard%20Admin%20RichzPOS%20Grey%20Area%20Flock",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Dashboard backoffice cloud POS modern untuk pengelolaan outlet retail dan franchise pusat. Menampilkan metrik pendapatan harian/mingguan/periode real-time, audit shift kasir, manajemen stok antar cabang, dan integrasi master web store.",
+      "features": [
+        "Real-Time Sales & Revenue Analytics (Volume Rp 1.2M+)",
+        "Multi-Branch Shift & Cashier Settlement Audit",
+        "Master Product, Barcode, & Stock Distribution",
+        "Sinkronisasi Otomatis dengan Web Store Online"
+      ]
     },
     {
       "id": "proj-6",
@@ -81,7 +121,15 @@
       "client": "Pratter Cabang (RichzSpot)",
       "imageUrl": "/assets/images/portfolio/richz-spot-dashboard.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Dashboard%20HRIS%20RichzSpot%20Pratter",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Sistem backoffice HRIS dan presensi berbasis lokasi presisi. Dilengkapi monitoring departemen real-time dengan peta radius lokasi, rekapitulasi kehadiran dan perizinan instan, otomasi cuti, serta manajemen master data pegawai multi-cabang.",
+      "features": [
+        "Peta Interaktif Monitoring Radius Lokasi Kantor",
+        "Rekapitulasi Real-Time Hadir, Terlambat, & Cuti",
+        "Pengajuan & Persetujuan Lembur / Cuti Digital",
+        "Multi-Department & Role-Based Access Control"
+      ]
     },
     {
       "id": "proj-7",
@@ -90,7 +138,15 @@
       "client": "Richz Store (by RichzPOS)",
       "imageUrl": "/assets/images/portfolio/richz-store-platform.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Platform%20Toko%20Online%20RichzStore",
-      "featured": true
+      "featured": true,
+      "isMobile": false,
+      "description": "Platform toko online omnichannel yang terhubung langsung secara native dengan ekosistem kasir RichzPOS. Memungkinkan bisnis meluncurkan toko online profesional dengan produk, stok, dan transaksi yang sinkron otomatis tanpa input manual ganda.",
+      "features": [
+        "Sinkronisasi Stok & Menu Real-Time dengan Mesin Kasir",
+        "Multi-Payment Gateway (QRIS, E-Wallet, Transfer Bank)",
+        "Notifikasi Pesanan & Integrasi Layanan Pengantaran",
+        "Tampilan Responsif untuk Desktop, Tablet, & Smartphone"
+      ]
     },
     {
       "id": "proj-8",
@@ -98,8 +154,17 @@
       "title": "Aplikasi Kasir Mobile & Cetak Struk Transaksi",
       "client": "RichzPOS Mobile",
       "imageUrl": "/assets/images/portfolio/richz-pos-mobile.jpg",
+      "logoUrl": "/assets/images/richz-pos-icon.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Aplikasi%20RichzPOS%20Mobile",
-      "featured": true
+      "featured": true,
+      "isMobile": true,
+      "description": "Aplikasi mobile kasir portabel untuk smartphone dan tablet Android/iOS. Dirancang cepat dan fleksibel dengan dukungan cetak struk via printer thermal Bluetooth, pencatatan transaksi offline/online, scan barcode, dan manajemen hak akses kasir.",
+      "features": [
+        "Integrasi Bluetooth Thermal Printer & Cetak Struk Cepat",
+        "Mode Transaksi Cepat (Dine-in, Takeaway, Delivery)",
+        "Dukungan Transaksi Offline dengan Auto-Sync Cloud",
+        "Barcode Scanner Cepat Menggunakan Kamera Ponsel"
+      ]
     },
     {
       "id": "proj-9",
@@ -107,8 +172,17 @@
       "title": "Aplikasi Presensi Online & Self-Service Karyawan",
       "client": "RichzSpot Mobile",
       "imageUrl": "/assets/images/portfolio/richz-spot-mobile.jpg",
+      "logoUrl": "/assets/images/richz-spot-icon.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Aplikasi%20RichzSpot%20Mobile",
-      "featured": true
+      "featured": true,
+      "isMobile": true,
+      "description": "Aplikasi absensi karyawan mobile berbasis Geo-Tagging GPS dan Face Recognition anti-fake GPS. Memungkinkan pegawai melakukan clock-in/out akurat, melihat riwayat absensi, serta mengajukan izin atau cuti langsung dari genggaman.",
+      "features": [
+        "Validasi Radius Lokasi GPS & Proteksi Anti-Fake GPS",
+        "Foto Verifikasi Kehadiran & Pengenalan Wajah",
+        "Self-Service Pengajuan Cuti, Izin, & Koreksi Presensi",
+        "Notifikasi Pengingat Jam Masuk & Pulang Kerja Otomatis"
+      ]
     },
     {
       "id": "proj-10",
@@ -116,8 +190,17 @@
       "title": "Aplikasi Toko Online Mobile & Katalog Belanja Konsumen",
       "client": "Aisya Store (RichzStore Mobile)",
       "imageUrl": "/assets/images/portfolio/richz-store.jpg",
+      "logoUrl": "/assets/images/richz-store-icon.png",
       "link": "https://wa.me/6282326743025?text=Halo%20SWA,%20saya%20tertarik%20melihat%20detail%20project:%20Aplikasi%20Mobile%20Aisya%20Store",
-      "featured": true
+      "featured": true,
+      "isMobile": true,
+      "description": "Aplikasi mobile e-commerce retail dengan brand sendiri untuk memanjakan pelanggan belanja online. Menghadirkan navigasi produk mulus, upload/scan QR, keranjang belanja, checkout instan dengan kurir, dan pelacakan pesanan real-time.",
+      "features": [
+        "Desain UI Mobile-First yang Ringan & Modern",
+        "Keranjang Belanja, Kupon Diskon, & Voucher Promo",
+        "Integrasi Ongkos Kirim Otomatis Seluruh Indonesia",
+        "Push Notification Promo & Update Status Pesanan"
+      ]
     }
   ],
   "testimonials": [
