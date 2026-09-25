@@ -1,0 +1,52 @@
+// Prisma Schema — SWA Digital Solusindo Landing Page
+// Node.js v20 | Prisma v6 | PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// KONTEN LANDING PAGE (single row, key-value JSON)
+// ─────────────────────────────────────────────
+model SiteContent {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique  // e.g. "main"
+  data      Json
+  updatedAt DateTime @updatedAt
+
+  @@map("site_content")
+}
+
+// ─────────────────────────────────────────────
+// ADMIN CONFIG (single row)
+// ─────────────────────────────────────────────
+model AdminConfig {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique @default("admin")
+  passwordHash String
+  siteName     String   @default("SWA Digital Solusindo CMS")
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_config")
+}
+
+// ─────────────────────────────────────────────
+// KONSULTASI / LEADS
+// ─────────────────────────────────────────────
+model Consultation {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @default("-")
+  phone     String
+  company   String   @default("-")
+  service   String   @default("Custom ERP System")
+  message   String   @default("")
+  createdAt DateTime @default(now())
+
+  @@map("consultations")
+}
