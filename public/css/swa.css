@@ -139,13 +139,13 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 /* ── HERO CINEMATIC (VIDEO / FOTO BISA DIGANTI VIA CMS) ── */
 .hero-cinematic {
   position: relative;
-  min-height: 84vh;
+  min-height: 86vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--white);
-  padding: 150px 0 110px;
+  padding: 150px 0 120px;
   overflow: hidden;
   text-align: center;
 }
@@ -249,7 +249,7 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
 .docked-bar-wrapper {
   position: relative;
   z-index: 20;
-  margin-top: -55px;
+  margin-top: -15px;
   margin-bottom: 40px;
 }
 .docked-bar {
@@ -290,11 +290,13 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   color: var(--gray-500);
 }
 @media(max-width:1024px){
+  .docked-bar-wrapper { margin-top: -5px; margin-bottom: 30px; }
   .docked-bar { grid-template-columns: 1fr 1fr; gap: 16px; padding: 20px; }
   .dock-col { border-right: none; border-bottom: 1px solid var(--gray-200); padding-bottom: 12px; }
   .dock-action { grid-column: span 2; }
 }
 @media(max-width:640px){
+  .docked-bar-wrapper { margin-top: 12px; margin-bottom: 24px; }
   .docked-bar { grid-template-columns: 1fr; }
   .dock-action { grid-column: span 1; }
 }
