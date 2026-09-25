@@ -164,13 +164,37 @@ h1,h2,h3,h4,h5 { font-family: var(--font-d); font-weight: 700; line-height: 1.25
   object-fit: cover;
   object-position: center;
 }
+.hero-cinematic__yt-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100%;
+  min-width: 177.77vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-cinematic__yt-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
 .hero-cinematic__overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(15, 8, 9, 0.22) 0%, rgba(15, 8, 9, 0.42) 100%);
+  background: linear-gradient(180deg, rgba(15, 8, 9, 0.45) 0%, rgba(15, 8, 9, 0.65) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 .hero-cinematic__content {
   position: relative;

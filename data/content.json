@@ -1,7 +1,7 @@
 {
   "hero": {
-    "mediaType": "image",
-    "mediaUrl": "/assets/images/team/team-6.jpeg",
+    "mediaType": "video",
+    "mediaUrl": "https://youtu.be/LWv5-Br1JJo?si=ihUTykWxvObLMGjm",
     "posterUrl": "/assets/images/team/team-6.jpeg",
     "title": "Strategi Bertemu",
     "titleAccent": "Teknologi.",

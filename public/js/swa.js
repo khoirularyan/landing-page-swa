@@ -64,13 +64,30 @@
       // Fallback cleanly to static HTML
     });
 
+  function getYouTubeId(url) {
+    if (!url) return null;
+    var str = String(url).trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+    var m = str.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/)|&v=)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
   function syncHero(hero) {
     if (!hero) return;
     var heroMedia = document.querySelector('.hero-cinematic__media');
     if (heroMedia && hero.mediaUrl) {
-      if (hero.mediaType === 'image') {
+      var ytId = getYouTubeId(hero.mediaUrl);
+      var isVideo = hero.mediaType === 'video' || !!ytId;
+
+      if (ytId && isVideo) {
+        heroMedia.innerHTML =
+          '<div class="hero-cinematic__yt-wrapper">' +
+            '<iframe src="https://www.youtube-nocookie.com/embed/' + ytId + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + ytId + '&playsinline=1&rel=0&showinfo=0&iv_load_policy=3&disablekb=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>' +
+          '</div>' +
+          '<div class="hero-cinematic__overlay"></div>';
+      } else if (hero.mediaType === 'image') {
         heroMedia.innerHTML = '<img src="' + hero.mediaUrl + '" alt="SWA Digital" class="hero-cinematic__img" style="width:100%;height:100%;object-fit:cover;"><div class="hero-cinematic__overlay"></div>';
-      } else if (hero.mediaType === 'video') {
+      } else if (isVideo) {
         heroMedia.innerHTML = '<video class="hero-cinematic__video" autoplay muted loop playsinline poster="' + (hero.posterUrl || '') + '">' +
           '<source src="' + hero.mediaUrl + '" type="video/mp4">' +
           '</video><div class="hero-cinematic__overlay"></div>';

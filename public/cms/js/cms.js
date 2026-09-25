@@ -206,12 +206,21 @@ async function loadContent() {
   }
 }
 
+function getYouTubeId(url) {
+  if (!url) return null;
+  const str = String(url).trim();
+  if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+  const m = str.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/)|&v=)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
 // ── HERO SETTINGS ──
 function populateHeroForm() {
   if (!contentData || !contentData.hero) return;
   const hero = contentData.hero;
 
-  const isVideo = hero.mediaType === 'video';
+  const ytId = getYouTubeId(hero.mediaUrl);
+  const isVideo = hero.mediaType === 'video' || !!ytId;
   document.getElementById('radio-hero-video').checked = isVideo;
   document.getElementById('radio-hero-image').checked = !isVideo;
 
@@ -227,7 +236,15 @@ function populateHeroForm() {
   updateHeroPreview();
 
   // Listeners for live preview
-  document.getElementById('hero-media-url').addEventListener('input', updateHeroPreview);
+  document.getElementById('hero-media-url').addEventListener('input', () => {
+    const url = document.getElementById('hero-media-url').value.trim();
+    if (getYouTubeId(url)) {
+      document.getElementById('radio-hero-video').checked = true;
+      document.getElementById('radio-hero-image').checked = false;
+      togglePosterField(true);
+    }
+    updateHeroPreview();
+  });
   document.getElementById('radio-hero-video').addEventListener('change', () => {
     togglePosterField(true);
     updateHeroPreview();
@@ -254,10 +271,14 @@ function updateHeroPreview() {
     return;
   }
 
-  if (isVideo) {
+  const ytId = getYouTubeId(url);
+
+  if (ytId) {
+    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=1" style="width:100%;height:100%;border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+  } else if (isVideo) {
     box.innerHTML = `<video src="${url}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>`;
   } else {
-    box.innerHTML = `<img src="${url}" alt="Preview" style="width:100%;height:100%;object-fit:cover;">`;
+    box.innerHTML = `<img src="${url}" alt="Preview" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='/assets/images/team/team-6.jpeg'">`;
   }
 }
 
@@ -917,9 +938,13 @@ async function saveAllContent(showNotification = true) {
   if (!contentData) return;
 
   // 1. Gather Hero
+  const heroMediaUrl = document.getElementById('hero-media-url').value.trim();
+  const isVideoSelected = document.getElementById('radio-hero-video').checked;
+  const isYt = !!getYouTubeId(heroMediaUrl);
+
   contentData.hero = {
-    mediaType: document.getElementById('radio-hero-video').checked ? 'video' : 'image',
-    mediaUrl: document.getElementById('hero-media-url').value.trim(),
+    mediaType: (isVideoSelected || isYt) ? 'video' : 'image',
+    mediaUrl: heroMediaUrl,
     posterUrl: document.getElementById('hero-poster-url').value.trim(),
     title: document.getElementById('hero-title').value.trim(),
     titleAccent: document.getElementById('hero-title-accent').value.trim(),
